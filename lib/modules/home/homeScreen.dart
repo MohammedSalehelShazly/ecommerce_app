@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                         enableInfiniteScroll: true,
                         autoPlay: true,
                         autoPlayCurve: Curves.fastOutSlowIn,
-                        viewportFraction: 2
+                        viewportFraction: 1
                           ),
                     ),
                   ),

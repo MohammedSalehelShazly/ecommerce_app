@@ -41,6 +41,7 @@ class AddressScreen extends StatelessWidget {
               : false,
           child: LoginScreenStr(
                   bottomPadding: 20,
+                  isRegister: true,
                   child: Form(
                     key: AddressCubit.get(context).addressFormKey,
                     child: Column(

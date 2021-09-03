@@ -19,7 +19,8 @@ class GetLocation{
       // Location services are not enabled don't continue
       // accessing the position and request users of the
       // App to enable the location services.
-      return Future.error('Location services are disabled.');
+      await Geolocator.openLocationSettings();
+      //return Future.error('Location services are disabled.');
     }
 
     permission = await Geolocator.checkPermission();

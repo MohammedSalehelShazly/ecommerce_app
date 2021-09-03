@@ -18,26 +18,29 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: BorderRadius.circular(20),
       onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (_)=>OneCategoryScreen(catID:catID ,catName:catName,)));
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            height: responsive.responsiveWidth(context, 0.3),
-            width: responsive.responsiveWidth(context, 0.3),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: appClrs.mainColor.withOpacity(0.3),
-              image: DecorationImage(
-                image: CachedNetworkImageProvider(image),
-                fit: BoxFit.contain
-              )
+          Expanded(
+            flex: 3,
+            child: Container(
+              width: responsive.responsiveWidth(context, 0.3),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: appClrs.mainColor.withOpacity(0.3),
+                image: DecorationImage(
+                  image: CachedNetworkImageProvider(image),
+                  fit: BoxFit.fill
+                )
+              ),
             ),
           ),
           SizedBox(height: 5,),
-          Text(catName.toString() ,textAlign: TextAlign.center,maxLines: 1,)
+          Expanded(flex: 1,child: Text(catName.toString() ,textAlign: TextAlign.center,maxLines: 1,))
         ],
       ),
     );

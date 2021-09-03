@@ -38,17 +38,20 @@ class IntroScreen extends StatelessWidget {
         builder:(context ,state)=> Scaffold(body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              CarouselSlider(
-                items: screens(context),
-                carouselController: LoginCubit.get(context).carouselController,
-                options: CarouselOptions(
-                    enlargeCenterPage: true,
-                    aspectRatio: 2/3,
-                    enableInfiniteScroll: false,
-                    scrollPhysics: BouncingScrollPhysics(),
-                    onPageChanged: (index, reason) {
-                      LoginCubit.get(context).setCurrentIndexOfIntroScreen(index);
-                    }),
+              Expanded(
+                child: CarouselSlider(
+                  items: screens(context),
+                  carouselController: LoginCubit.get(context).carouselController,
+                  options: CarouselOptions(
+                      enlargeCenterPage: true,
+                      aspectRatio: responsive.isPortrait(context) ?2/3 :3/2,
+                      viewportFraction: .9,
+                      enableInfiniteScroll: false,
+                      scrollPhysics: BouncingScrollPhysics(),
+                      onPageChanged: (index, reason) {
+                        LoginCubit.get(context).setCurrentIndexOfIntroScreen(index);
+                      }),
+                ),
               ),
               Container(
                 height: responsive.sHeight(context)*0.08,

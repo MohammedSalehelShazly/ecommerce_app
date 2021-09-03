@@ -26,14 +26,13 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(child: Scaffold(
 
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(responsive.sHeight(context)*0.07),
+        preferredSize: Size.fromHeight(responsive.responsiveHigh(context ,0.075)),
         child: HomeAppBar(),
       ),
 
       body: BlocConsumer<HomeCubit ,HomeStates>(
           listener: (ctx ,state){},
           builder: (ctx ,state) {
-            print('...............................${LoginCubit.get(context).emailLoginCtrl}');
             return
               HomeCubit.of(context).homeProdsModel == null || state is GetHomeDataLoadingState
                   ? Container(height: responsive.sHeight(context)*0.9,child: AppProgress(isList: true, listCount: 6,))
@@ -44,7 +43,7 @@ class HomeScreen extends StatelessWidget {
 
                   Container(
                     alignment: Alignment.topCenter,
-                    height: responsive.sHeight(context)*0.3,
+                    height: responsive.responsiveHigh(context ,0.3),
                     child: CarouselSlider(
                       items: HomeCubit.of(context).homeProdsModel.data.banners.map((banner) => Container(
                         decoration: BoxDecoration(
@@ -58,9 +57,8 @@ class HomeScreen extends StatelessWidget {
                         enlargeCenterPage: true,
                         enableInfiniteScroll: true,
                         autoPlay: true,
-                        scrollPhysics: BouncingScrollPhysics(),
                         autoPlayCurve: Curves.fastOutSlowIn,
-                        viewportFraction: 1
+                        viewportFraction: 2
                           ),
                     ),
                   ),

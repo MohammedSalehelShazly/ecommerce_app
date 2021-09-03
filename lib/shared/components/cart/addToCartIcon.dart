@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:like_button/like_button.dart';
 
+import '../../../shared/styles/responsive.dart';
 import '../../../cubit/cartCubit/cartCubit.dart';
 import '../../../cubit/cartCubit/cartStates.dart';
-import '../../../shared/components/loading/appProgress.dart';
 import '../../../shared/styles/colors.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,11 +22,13 @@ class AddToCartIcon extends StatelessWidget {
       listener:(context ,state){},
       builder:(context ,state)=> Container(
         padding: EdgeInsets.all(withBG ? 8 :0),
+        alignment: Alignment.center,
         decoration: BoxDecoration(
           shape: BoxShape.circle ,
           color: withBG ?appClrs.scaffoldBackgroundColorDark :Colors.transparent,),
         child:
         LikeButton(
+          size: responsive.textScale(context)*22,
           circleColor: CircleColor(start: appClrs.mainColor.withOpacity(0.8), end: appClrs.mainColor),
           onTap: (val) async{
             CartCubit.of(context).addOrRemove(screenContext, prodID);

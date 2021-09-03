@@ -35,22 +35,29 @@ class LoginScreen extends StatelessWidget {
               children: [
 
                 AppTextField(
-                  controller: LoginCubit.get(context).emailLoginCtrl,
-                  validator: (x){
-                    if(x.contains('@') || x.endsWith('.com'))
-                      return null;
-                    else
-                      return getTranslated(context, 'email must be written as')+': name@example.com';
-                  },
-                  hintText: 'name@example.com',
-                  prefixIcon: Icon(Icons.mail_outline),
-                  alwaysLeftDirection:true
+                    controller: LoginCubit.get(context).emailLoginCtrl,
+                    focusNode: LoginCubit.get(context).emailLoginFocus,
+                    onFieldSubmitted: (val){
+                      LoginCubit.get(context).passwordLoginFocus.requestFocus();
+                    },
+                    textInputType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                    validator: (x){
+                      if(x.contains('@') || x.endsWith('.com'))
+                        return null;
+                      else
+                        return getTranslated(context, 'email must be written as')+': name@example.com';
+                    },
+                    hintText: 'name@example.com',
+                    prefixIcon: Icon(Icons.mail_outline),
+                    alwaysLeftDirection:true
                 ),
 
                 responsive.smallSizedBox(context),
 
                 AppTextField(
                   obscureText : LoginCubit.get(context).obscurePassRegister,
+                  focusNode: LoginCubit.get(context).passwordLoginFocus,
                   suffixIcon: IconButton(
                     icon: Icon(LoginCubit.get(context).obscurePassRegister ? Icons.visibility_off_outlined :Icons.visibility_outlined),
                     onPressed:()=> LoginCubit.get(context).setObscurePassRegister(),
@@ -77,10 +84,9 @@ class LoginScreen extends StatelessWidget {
                     clr: appClrs.mainColor,
                     onPressed: () async{
                       if(LoginCubit.get(context).formLoginKey.currentState.validate()){
-                        await LoginCubit.get(context).login(
-                            context,
-                            LoginCubit.get(context).emailLoginCtrl.text,
-                            LoginCubit.get(context).passwordLoginCtrl.text,);
+                        await LoginCubit.get(context).login(context ,
+                          LoginCubit.get(context).emailLoginCtrl.text,
+                          LoginCubit.get(context).passwordLoginCtrl.text,);
                       }
                     }),
 

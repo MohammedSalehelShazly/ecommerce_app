@@ -1,3 +1,4 @@
+import 'package:ecommerce/shared/styles/responsive.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +29,7 @@ class FavoriteIcon extends StatelessWidget {
       listener: (context ,state){},
       builder:(context ,state)=> Container(
         padding: EdgeInsets.all(8),
+        alignment: Alignment.center,
         decoration: BoxDecoration(
           shape: BoxShape.circle ,
           color: withBG ?appClrs.scaffoldBackgroundColorDark :Colors.transparent,),
@@ -36,6 +38,7 @@ class FavoriteIcon extends StatelessWidget {
               ? AppProgress()
               :
           LikeButton(
+            size: responsive.textScale(context)*22,
             circleColor: CircleColor(start: appClrs.mainColor.withOpacity(0.8), end: appClrs.mainColor),
             onTap: (val) async{
               CategoriesCubit.of(context).addRemoveFav(context, prodID);

@@ -25,7 +25,7 @@ class SearchScreen extends StatelessWidget {
 
         return Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(responsive.responsiveHigh(context, 0.07)),
+            preferredSize: Size.fromHeight(responsive.responsiveHigh(context, 0.075)),
             child: AppBar(
               title: Form(
                 key: CategoriesCubit.of(context).searchFormKey,

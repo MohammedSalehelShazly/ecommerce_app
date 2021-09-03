@@ -21,7 +21,7 @@ class HomeCubit extends Cubit<HomeStates>{
   }
 
   // localization..
-  String appLang = 'ar';
+  String appLang = 'en';
   Future<void> setLang(BuildContext context ,String languageCode) async {
     Locale _locale = await setLocale(languageCode);
     MyApp.setLocale(context, _locale);

@@ -45,6 +45,11 @@ class SharedPreferencesHelper{
     return searchWords;
   }
 
+  Future clearAll() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+  }
+
 
 
 

@@ -15,22 +15,19 @@ class OneIntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: SvgPicture.asset(img,),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10,0,10,20),
-            child: Text(txt ,style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 22),textAlign: TextAlign.center,),
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+          child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: SvgPicture.asset(img,)),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10,0,10,20),
+          child: Text(txt ,style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 20),textAlign: TextAlign.center,),
+        ),
+      ],
     );
   }
 }

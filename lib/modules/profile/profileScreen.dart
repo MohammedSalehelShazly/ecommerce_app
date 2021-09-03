@@ -25,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
           return Scaffold(
             body:
 
-            Column(children: [
+            ListView(children: [
 
               Container(
                   height: responsive.responsiveHigh(context, 0.40),
@@ -35,8 +35,6 @@ class ProfileScreen extends StatelessWidget {
                   )),
 
               SizedBox(height: responsive.responsiveHigh(context, 0.03),),
-
-              LogoutBtn(),
 
               BlocConsumer<UpdateProfileCubit ,UpdateProfileStates>(
                 listener: (context ,updateProfileState){},
@@ -64,6 +62,7 @@ class ProfileScreen extends StatelessWidget {
                 listener: (context ,state){},
                 builder:(context ,state)=> AppListTile(
                     txt: getTranslated(context, 'Change password'),
+                    trailing: Icon(Icons.lock_open_outlined),
                     onTap:() async{
                       await UpdateProfileCubit.get(context).setPasswordsCtrl();
                       Navigator.push(context, CupertinoPageRoute(builder: (_)=> ChangePassScreen())).then((_){
@@ -75,6 +74,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
 
+              LogoutBtn(),
 
             ],),
           );

@@ -27,8 +27,11 @@ class CategoriesGrid extends StatelessWidget {
               duration: Duration(milliseconds: 700),
               margin: const EdgeInsets.all(15),
                   height: !CategoriesCubit.of(context).showAllCat || CategoriesCubit.of(context).categoriesModel == null
-                      ? responsive.responsiveHigh(context, 0.25)
-                      : responsive.responsiveHigh(context, 0.25) * ((CategoriesCubit.of(context).categoriesModel.data.data.length/3).ceil()),
+                      ? responsive.responsiveHigh(context, 0.28)
+                      : responsive.responsiveHigh(context, 0.28)
+                          * ((CategoriesCubit.of(context).categoriesModel.data.data.length/
+                          (responsive.isPortrait(context) ? 3: 5) // one row take 5||6 items at horizontal and 3 when vertical
+                      ).ceil()),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +52,7 @@ class CategoriesGrid extends StatelessWidget {
                             mainAxisSpacing: 5,
                             crossAxisSpacing: 5,
                             maxCrossAxisExtent: responsive.responsiveWidth(context, 0.3),
-                            mainAxisExtent: responsive.responsiveHigh(context, 0.2)
+                            mainAxisExtent: responsive.responsiveHigh(context, 0.22)
                           ),
                           itemCount:
                               CategoriesCubit.of(context).categoriesModel.data.data.length ,

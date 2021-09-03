@@ -27,6 +27,7 @@ class SignUpScreen extends StatelessWidget {
       listener: (context ,state){},
       builder:(context ,state)=> LoginScreenStr(
         bottomPadding: 5,
+        isRegister: true,
         child: Form(
           key: LoginCubit.get(context).formRegisterKey,
           child: Column(
@@ -41,6 +42,11 @@ class SignUpScreen extends StatelessWidget {
 
               AppTextField(
                 controller: LoginCubit.get(context).nameRegisterCtrl,
+                focusNode: LoginCubit.get(context).nameRegisterFocus,
+                textInputAction: TextInputAction.next,
+                onFieldSubmitted: (val){
+                  LoginCubit.get(context).emailRegisterFocus.requestFocus();
+                },
                 validator: (x){
                   if(x.trim().isNotEmpty)
                     return null;
@@ -54,15 +60,21 @@ class SignUpScreen extends StatelessWidget {
               responsive.smallSizedBox(context),
 
               AppTextField(
-                controller: LoginCubit.get(context).emailRegisterCtrl,
-                validator: (x){
-                  if(x.contains('@') || x.endsWith('.com'))
-                    return null;
-                  else
-                    return getTranslated(context, 'email must be written as')+': name@example.com';
-                },
-                hintText: 'name@example.com',
-                prefixIcon: Icon(Icons.mail_outline),
+                  controller: LoginCubit.get(context).emailRegisterCtrl,
+                  focusNode: LoginCubit.get(context).emailRegisterFocus,
+                  textInputAction: TextInputAction.next,
+                  onFieldSubmitted: (val){
+                    LoginCubit.get(context).passwordRegisterFocus.requestFocus();
+                  },
+                  textInputType: TextInputType.emailAddress,
+                  validator: (x){
+                    if(x.contains('@') || x.endsWith('.com'))
+                      return null;
+                    else
+                      return getTranslated(context, 'email must be written as')+': name@example.com';
+                  },
+                  hintText: 'name@example.com',
+                  prefixIcon: Icon(Icons.mail_outline),
                   alwaysLeftDirection:true
               ),
 
@@ -71,6 +83,11 @@ class SignUpScreen extends StatelessWidget {
               AppTextField(
                   controller: LoginCubit.get(context).passwordRegisterCtrl,
                   obscureText : LoginCubit.get(context).obscurePassLogin,
+                  focusNode: LoginCubit.get(context).passwordRegisterFocus,
+                  textInputAction: TextInputAction.next,
+                  onFieldSubmitted: (val){
+                    LoginCubit.get(context).phoneRegisterFocus.requestFocus();
+                  },
                   suffixIcon: IconButton(
                     icon: Icon(LoginCubit.get(context).obscurePassLogin ? Icons.visibility_off_outlined :Icons.visibility_outlined),
                     onPressed:()=> LoginCubit.get(context).setObscurePassLogin(),
@@ -88,6 +105,7 @@ class SignUpScreen extends StatelessWidget {
 
               AppTextField(
                 controller: LoginCubit.get(context).phoneRegisterCtrl,
+                focusNode: LoginCubit.get(context).phoneRegisterFocus,
                 textInputType: TextInputType.phone,
                 validator: (x){
                   if(x.trim().isNotEmpty)

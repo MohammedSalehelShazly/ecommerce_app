@@ -31,6 +31,8 @@ class LoginCubit extends Cubit<LoginStates>{
 
   TextEditingController emailLoginCtrl;
   TextEditingController passwordLoginCtrl;
+  FocusNode emailLoginFocus;
+  FocusNode passwordLoginFocus;
   bool obscurePassLogin = true;
   GlobalKey<FormState> formLoginKey = GlobalKey<FormState>();
 
@@ -39,6 +41,11 @@ class LoginCubit extends Cubit<LoginStates>{
   TextEditingController passwordRegisterCtrl;
   TextEditingController nameRegisterCtrl;
   TextEditingController phoneRegisterCtrl;
+  FocusNode emailRegisterFocus;
+  FocusNode passwordRegisterFocus;
+  FocusNode nameRegisterFocus;
+  FocusNode phoneRegisterFocus;
+
   bool obscurePassRegister = true;
   GlobalKey<FormState> formRegisterKey = GlobalKey<FormState>();
 
@@ -49,6 +56,12 @@ class LoginCubit extends Cubit<LoginStates>{
     phoneRegisterCtrl = TextEditingController();
     emailLoginCtrl = TextEditingController();
     passwordLoginCtrl = TextEditingController();
+    emailLoginFocus = FocusNode();
+    passwordLoginFocus = FocusNode();
+    emailRegisterFocus = FocusNode();
+    passwordRegisterFocus = FocusNode();
+    nameRegisterFocus = FocusNode();
+    phoneRegisterFocus = FocusNode();
     emit(SetObscurePassLoginState());
   }
   disposeLoginCtrl(){
@@ -58,6 +71,12 @@ class LoginCubit extends Cubit<LoginStates>{
     phoneRegisterCtrl.dispose();
     emailLoginCtrl.dispose();
     passwordLoginCtrl.dispose();
+    emailLoginFocus.dispose();
+    passwordLoginFocus.dispose();
+    emailRegisterFocus.dispose();
+    passwordRegisterFocus.dispose();
+    nameRegisterFocus.dispose();
+    phoneRegisterFocus.dispose();
     emit(SetObscurePassLoginState());
   }
 
@@ -171,8 +190,8 @@ class LoginCubit extends Cubit<LoginStates>{
       if(logoutModel.status){ // logout is success ?
         /// set user && stored
         token = '';
-        await sharedPreferencesHelper.setToken('');
         getIsLoginStored();
+        await sharedPreferencesHelper.clearAll();
         await setLoginCtrl();
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (_) => LoginScreen()));

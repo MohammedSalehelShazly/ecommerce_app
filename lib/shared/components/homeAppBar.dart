@@ -37,7 +37,7 @@ class HomeAppBar extends StatelessWidget {
                 child: Hero(
                   tag: 'userImg',
                   child: CircleAvatar(
-                      radius: responsive.sHeight(context)*0.025,
+                      radius: responsive.responsiveHigh(context ,0.025),
                       backgroundImage: ProfileCubit.get(context).user !=
                           null
                           ? CachedNetworkImageProvider(

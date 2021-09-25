@@ -1,16 +1,37 @@
 # ecommerce
 
-A new Flutter application.
+preview on youtube: https://www.youtube.com/watch?v=iaJae-wVwD4
 
-## Getting Started
+The app depends on REST API.
 
-This project is a starting point for a Flutter application.
+Add products to favorites and to cart.
 
-A few resources to get you started if this is your first Flutter project:
+Edit profile details.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+the App is localized to two languages.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Awesome animation and loading.
+
+.
+
+-Authentication:
+
+a- complete login and register.
+
+b- change password.
+
+c- reset password and verify email by sending a verification code.
+
+d- verify all the data entered.
+
+.
+
+
+-Search:
+
+a- search with the product title, description, price, and discount rate.
+
+b- save search history and the user can delete it.
+.
+![ecommerce-app](https://user-images.githubusercontent.com/71941881/134774238-6df32f3e-b42f-4bbf-b80c-14d95b3e0641.png)
+
